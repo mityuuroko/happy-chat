@@ -1,0 +1,4 @@
+.mypage
+  = "#{@nickname}さんの投稿一覧"
+  - @tweets.each do |tweet|
+    = tweet.text

@@ -1,0 +1,21 @@
+%body
+  .Tweet
+  %ul.Tweet__content
+    %li.Tweet__text
+    = @tweet.text
+    %li.Tweet__delete
+    = link_to '削除', tweet_path(@tweet.id), method: :delete 
+    %li.Tweet__edit
+    = link_to '編集', edit_tweet_path(@tweet.id), method: :get 
+  %p.Tweet__user 投稿者
+  = @tweet.user.nickname
+  %p.Comment
+    - if user_signed_in?
+      = form_with(model: [@tweet, @comment], local: true, id: "new_comment") do |form|
+        = form.text_area :text, placeholder: "コメントする", rows: "2", class: "textbox"
+        = form.submit "送信する", class: "form__submit"
+    - else 
+      %strong コメントの投稿には新規登録orログインが必要です
+    - @comments.each do |comment| 
+      = link_to  comment.user.nickname, "/users/#{comment.user_id}"
+      = comment.text

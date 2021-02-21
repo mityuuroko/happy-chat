@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Picteets
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application'
+  %body
+    .Header 
+      = notice
+      = alert
+      %p.Header__name
+        = link_to "楽しいことをつぶやいてみよう！", root_path
+      %p.Header__login
+      - if user_signed_in?
+        %span 
+        = current_user.nickname
+        = link_to "マイページ", "/users/#{current_user.id}"
+        = link_to "ログアウト", destroy_user_session_path, method: :delete
+        = link_to "つぶやく", new_tweet_path, class: "post"
+      - else
+        = link_to "ログイン", new_user_session_path, class: "post"
+        = link_to "新規登録", new_user_session_path, class: "post"
+    = yield
+    .Footer
+      %p Coryright Happy-chat 2021

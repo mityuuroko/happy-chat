@@ -1,0 +1,4 @@
+= form_with(model: tweet, local: true) do |form|
+    = form.text_field :image, class: "image", placeholder: "image"
+    = form.text_area :text, placeholder: "text"
+    = form.submit "送信", class: "send"
