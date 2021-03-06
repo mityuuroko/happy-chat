@@ -1,19 +1,22 @@
-%p.Tweet__user
-= tweet.user.nickname
-%p.Tweet__text
-= tweet.text
-%ul.Edit
-- if user_signed_in? && current_user.id == tweet.user_id
-  %li.Edit__content
-  = link_to '詳細', tweet_path(tweet.id), method: :get
-  %li.Edit__delete
-  = link_to '削除', tweet_path(tweet.id), method: :delete 
-  %li.Edit__edit
-  = link_to '編集', edit_tweet_path(tweet.id), method: :get 
-%p.Like
-- if current_user.liked_by?(tweet.id)
-  = link_to "いいねを外す", destroy_like_path(tweet), method: :delete
-  = tweet.likes.count
-- else
-  = link_to "いいね", create_like_path(tweet), method: :post
-  = tweet.likes.count
+.Content   
+  %p.Tweet__user
+  = tweet.user.nickname + "さん"
+  %p.Tweet__text <内容>
+  = tweet.text
+  %ul.Edit
+  - if user_signed_in? && current_user.id == tweet.user_id
+    %li.Edit__content
+    = link_to '詳細', tweet_path(tweet.id), method: :get
+    %li.Edit__delete
+    = link_to '削除', tweet_path(tweet.id), method: :delete 
+    %li.Edit__edit
+    = link_to '編集', edit_tweet_path(tweet.id), method: :get 
+  %p.Like
+  - if current_user.liked_by?(tweet.id)
+    = link_to destroy_like_path(tweet), method: :delete do
+      %i.fas.fa-heart
+    = tweet.likes.count
+  - else
+    = link_to create_like_path(tweet), method: :post do
+      %i.far.fa-heart
+    = tweet.likes.count
