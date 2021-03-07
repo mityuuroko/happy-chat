@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Happy-chat
+今日の出来事を投稿して共有できるサイトです
 
-Things you may want to cover:
+# Requirements
+- Ruby 2.6.5
+- Ruby on Rails 5.2.4
+- MySQL 5.3
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Note
+特定の文字で投稿するとエラーが表示される機能
+画像を投稿する機能を今後追加していきたいです
